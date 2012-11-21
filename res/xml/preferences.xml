@@ -7,43 +7,45 @@
         android:entries="@array/airplanemode"
         android:entryValues="@array/airplanemode_values"
         android:key="airPlaneMode"
-        android:summary="Select AirPlane Mode"
-        android:title="AirPlane Mode" />
+        android:summary="@string/airplane_mode_summary"
+        android:title="@string/airplane_mode" />
 
     <CheckBoxPreference
         android:id="@+id/airPlaneModeOn"
         android:key="airPlaneModeOn"
-        android:summaryOff="Trun AirPlane Mode On"
-        android:summaryOn="Trun AirPlane Mode Off"
-        android:title="AirPlane Mode On" />
+        android:summaryOff="@string/airplane_mode_on_summary_off"
+        android:summaryOn="@string/airplane_mode_on_summary_on"
+        android:title="@string/airplane_mode_on" />
     <CheckBoxPreference
         android:id="@+id/autoTurnOnOffAirPlaneMode"
         android:key="autoTurnOnOffAirPlaneMode"
-        android:summary="Auto Turn On/Off AirPlane Mode"
-        android:title="Auto Turn On/Off AirPlane Mode" />
+        android:summary="@string/auto_turn_on_off_airplane_mode_summary"
+        android:title="@string/auto_turn_on_off_airplane_mode" />
 
     <EditTextPreference
         android:id="@+id/autoTurnOnAirPlaneModeTime"
         android:dependency="autoTurnOnOffAirPlaneMode"
         android:inputType="number"
+        android:defaultValue="0000"
         android:key="autoTurnOnAirPlaneModeTime"
         android:numeric="integer"
-        android:summary="Auto Turn On AirPlane Mode Time"
-        android:title="Auto Turn On AirPlane Mode Time" />
+        android:summary="@string/auto_turn_on_airplane_mode_time_summary"
+        android:title="@string/auto_turn_on_airplane_mode_time" />
     <EditTextPreference
         android:id="@+id/autoTurnOffAirPlaneModeTime"
         android:dependency="autoTurnOnOffAirPlaneMode"
         android:inputType="number"
+        android:defaultValue="0000"
         android:key="autoTurnOffAirPlaneModeTime"
         android:numeric="integer"
-        android:summary="Auto Turn Off AirPlane Mode Time"
-        android:title="Auto Turn Off AirPlane Mode Time" />
+        android:summary="@string/auto_turn_off_airplane_mode_time_summary"
+        android:title="@string/auto_turn_off_airplane_mode_time" />
 
     <CheckBoxPreference
         android:id="@+id/isRepeat"
         android:dependency="autoTurnOnOffAirPlaneMode"
         android:key="isRepeat"
-        android:summary="Repeat Everyday"
-        android:title="Repeat Everyday" />
+        android:summary="@string/is_repeat_summary"
+        android:title="@string/is_repeat" />
 
 </PreferenceScreen>

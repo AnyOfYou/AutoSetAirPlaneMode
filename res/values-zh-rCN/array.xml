@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="airplanemode">
+        <item>常规</item>
+        <item>不关闭WiFi</item>
+        <item>不关闭蓝牙</item>
+        <item>不关闭WiFi和蓝牙</item>
+    </string-array>
+    <string-array name="airplanemode_values">
+        <item>cell,bluetooth,wifi</item>
+        <item>cell,bluetooth</item>
+        <item>cell,wift</item>
+        <item>cell</item>
+    </string-array>
+
+</resources>

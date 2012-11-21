@@ -1,5 +1,26 @@
 <resources>
 
     <string name="app_name">AutoSetAirPlaneMode</string>
+    <string name="airplane_mode">AirPlane Mode</string>
+    <string name="airplane_mode_summary">Select AirPlane Mode</string>
+    <string name="airplane_mode_on_summary_off">Trun AirPlane Mode On</string>
+    <string name="airplane_mode_on_summary_on">Turn AirPlane Mode Off</string>
+    <string name="airplane_mode_on">AirPlane Mode On</string>
+    <string name="auto_turn_on_off_airplane_mode">Auto Turn On/Off AirPlane Mode</string>
+    <string name="auto_turn_on_off_airplane_mode_summary">Auto Turn On/Off AirPlane Mode</string>
+    <string name="auto_turn_on_airplane_mode_time">Auto Turn On AirPlane Mode Time</string>
+    <string name="auto_turn_on_airplane_mode_time_summary">Auto Turn On AirPlane Mode Time</string>
+    <string name="auto_turn_off_airplane_mode_time">Auto Turn Off AirPlane Mode Time</string>
+    <string name="auto_turn_off_airplane_mode_time_summary">Auto Turn Off AirPlane Mode Time</string>
+    <string name="is_repeat">Repeat Everyday</string>
+    <string name="is_repeat_summary">Repeat Everyday</string>
+    <string name="notification_airplane_mode_on">AirPlane Mode On</string>
+    <string name="notification_airplane_mode_off">AirPlane Mode Off</string>
+    <string name="cancel_all">Cancel All</string>
+    <string name="set_airplane_mode_auto">"Set AirPlane Mode Auto "</string>
+    <string name="repeat_everyday">"Repeat Everyday "</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="at">" At "</string>
 
 </resources>

@@ -33,10 +33,10 @@ public class Tools {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(time);
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Toast.makeText(context, "Set AirPlane Mode Auto " + (isRepeat ? "Repeat Everyday " : "") + (isOn ? "On" : "Off") + " At " + formatter.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
+		Toast.makeText(context, context.getString(R.string.set_airplane_mode_auto) + (isRepeat ? context.getString(R.string.repeat_everyday) : "") + (isOn ? context.getString(R.string.on) : context.getString(R.string.off)) + context.getString(R.string.at) + formatter.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
 	}
-	
-	public static void makeToast(Context context,String str){
-		Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
+
+	public static void makeToast(Context context, String str) {
+		Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
 	}
 }

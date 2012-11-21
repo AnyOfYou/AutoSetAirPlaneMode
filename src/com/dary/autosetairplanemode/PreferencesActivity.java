@@ -40,9 +40,6 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		autoTurnOnAirPlaneModeTime.setOnPreferenceChangeListener(this);
 		autoTurnOffAirPlaneModeTime.setOnPreferenceChangeListener(this);
 		isRepeat.setOnPreferenceChangeListener(this);
-
-		autoTurnOnAirPlaneModeTime.setText("0000");
-		autoTurnOffAirPlaneModeTime.setText("0000");
 	}
 
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -116,7 +113,7 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 		am.cancel(piOn);
 		am.cancel(piOff);
-		Tools.makeToast(this, "Cancel All");
+		Tools.makeToast(this, getString(R.string.cancel_all));
 	}
 
 	private long stringHourMinTimetoLongMillis(String str) {
