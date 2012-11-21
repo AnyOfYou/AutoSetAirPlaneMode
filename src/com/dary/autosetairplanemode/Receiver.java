@@ -16,13 +16,17 @@ public class Receiver extends BroadcastReceiver {
 			Intent intentOn = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
 			context.sendBroadcast(intentOn);
 			Tools.makeNotification(context, context.getString(R.string.notification_airplane_mode_on));
-			PreferencesActivity.airPlaneModeOn.setChecked(true);
+			if (PreferencesActivity.airPlaneModeOn != null) {
+				PreferencesActivity.airPlaneModeOn.setChecked(true);
+			}
 		} else {
 			Settings.System.putString(cr, Settings.System.AIRPLANE_MODE_ON, "0");
 			Intent intentOff = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
 			context.sendBroadcast(intentOff);
 			Tools.makeNotification(context, context.getString(R.string.notification_airplane_mode_off));
-			PreferencesActivity.airPlaneModeOn.setChecked(false);
+			if (PreferencesActivity.airPlaneModeOn != null) {
+				PreferencesActivity.airPlaneModeOn.setChecked(false);
+			}
 		}
 	}
 
