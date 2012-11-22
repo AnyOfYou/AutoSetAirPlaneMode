@@ -24,18 +24,18 @@
 
     <EditTextPreference
         android:id="@+id/autoTurnOnAirPlaneModeTime"
+        android:defaultValue="0000"
         android:dependency="autoTurnOnOffAirPlaneMode"
         android:inputType="number"
-        android:defaultValue="0000"
         android:key="autoTurnOnAirPlaneModeTime"
         android:numeric="integer"
         android:summary="@string/auto_turn_on_airplane_mode_time_summary"
         android:title="@string/auto_turn_on_airplane_mode_time" />
     <EditTextPreference
         android:id="@+id/autoTurnOffAirPlaneModeTime"
+        android:defaultValue="0000"
         android:dependency="autoTurnOnOffAirPlaneMode"
         android:inputType="number"
-        android:defaultValue="0000"
         android:key="autoTurnOffAirPlaneModeTime"
         android:numeric="integer"
         android:summary="@string/auto_turn_off_airplane_mode_time_summary"

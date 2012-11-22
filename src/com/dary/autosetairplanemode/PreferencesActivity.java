@@ -40,6 +40,14 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		autoTurnOnAirPlaneModeTime.setOnPreferenceChangeListener(this);
 		autoTurnOffAirPlaneModeTime.setOnPreferenceChangeListener(this);
 		isRepeat.setOnPreferenceChangeListener(this);
+		if (autoTurnOnAirPlaneModeTime.getText().equals("0"))
+		{
+			autoTurnOnAirPlaneModeTime.setText("0000");
+		}
+		if (autoTurnOffAirPlaneModeTime.getText().equals("0"))
+		{
+			autoTurnOffAirPlaneModeTime.setText("0000");
+		}
 	}
 
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
