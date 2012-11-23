@@ -1,6 +1,7 @@
 package com.dary.autosetairplanemode;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -11,6 +12,8 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.provider.Settings;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class PreferencesActivity extends PreferenceActivity implements OnPreferenceChangeListener {
 	static CheckBoxPreference airPlaneModeOn;
@@ -118,5 +121,23 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		am.cancel(piOn);
 		am.cancel(piOff);
 		Tools.makeToast(this, getString(R.string.cancel_all));
+	}
+	
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(0, 0, 0,com.dary.autosetairplanemode.R.string.about);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case 0:
+			// int类型的引用,不能直接相加
+			new AlertDialog.Builder(this).setTitle(R.string.about).setMessage(getResources().getString(R.string.app_name) + "\n\n" + getResources().getString(R.string.github)).setPositiveButton(com.dary.autosetairplanemode.R.string.ok, null).show();
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

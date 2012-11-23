@@ -24,5 +24,8 @@
     <string name="at">"在"</string>
     <string name="please_select_set_airplane_mode_auto">请选择设置飞行模式自动</string>
     <string name="time">的时间</string>
+    <string name="about">关于</string>
+    <string name="github">https://github.com/AnyOfYou/AutoSetAirPlaneMode.git</string>
+    <string name="ok">好的</string>
 
 </resources>
