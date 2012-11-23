@@ -4,8 +4,8 @@
     <ListPreference
         android:id="@+id/airPlaneMode"
         android:defaultValue="cell,bluetooth,wifi"
-        android:entries="@array/airplanemode"
-        android:entryValues="@array/airplanemode_values"
+        android:entries="@array/airplane_mode"
+        android:entryValues="@array/airplane_mode_values"
         android:key="airPlaneMode"
         android:summary="@string/airplane_mode_summary"
         android:title="@string/airplane_mode" />
@@ -22,26 +22,6 @@
         android:summary="@string/auto_turn_on_off_airplane_mode_summary"
         android:title="@string/auto_turn_on_off_airplane_mode" />
 
-    <!--
-    <EditTextPreference
-        android:id="@+id/autoTurnOnAirPlaneModeTime"
-        android:defaultValue="0000"
-        android:dependency="autoTurnOnOffAirPlaneMode"
-        android:inputType="number"
-        android:key="autoTurnOnAirPlaneModeTime"
-        android:numeric="integer"
-        android:summary="@string/auto_turn_on_airplane_mode_time_summary"
-        android:title="@string/auto_turn_on_airplane_mode_time" />
-    <EditTextPreference
-        android:id="@+id/autoTurnOffAirPlaneModeTime"
-        android:defaultValue="0000"
-        android:dependency="autoTurnOnOffAirPlaneMode"
-        android:inputType="number"
-        android:key="autoTurnOffAirPlaneModeTime"
-        android:numeric="integer"
-        android:summary="@string/auto_turn_off_airplane_mode_time_summary"
-        android:title="@string/auto_turn_off_airplane_mode_time" />
-    -->
     <com.dary.autosetairplanemode.TimePreference
         android:id="@+id/autoTurnOnAirPlaneModeTime"
         android:dependency="autoTurnOnOffAirPlaneMode"
@@ -61,5 +41,14 @@
         android:key="isRepeat"
         android:summary="@string/is_repeat_summary"
         android:title="@string/is_repeat" />
+
+    <ListPreference
+        android:id="@+id/notificationType"
+        android:defaultValue="none"
+        android:entries="@array/notification_type"
+        android:entryValues="@array/notification_type_values"
+        android:key="notificationType"
+        android:summary="@string/notification_type_summary"
+        android:title="@string/notification_type" />
 
 </PreferenceScreen>

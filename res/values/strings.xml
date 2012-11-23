@@ -27,5 +27,7 @@
     <string name="about">About</string>
     <string name="github">https://github.com/AnyOfYou/AutoSetAirPlaneMode.git</string>
     <string name="ok">OK</string>
+    <string name="notification_type">Set Notification Type</string>
+    <string name="notification_type_summary">Set Notification Type When App Auto Set Airplane Mode On/Off</string>
 
 </resources>

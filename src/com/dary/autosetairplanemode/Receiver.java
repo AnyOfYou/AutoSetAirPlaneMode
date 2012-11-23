@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 
 public class Receiver extends BroadcastReceiver {
@@ -15,19 +17,57 @@ public class Receiver extends BroadcastReceiver {
 			Settings.System.putString(cr, Settings.System.AIRPLANE_MODE_ON, "1");
 			Intent intentOn = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
 			context.sendBroadcast(intentOn);
-			Tools.makeNotification(context, context.getString(R.string.notification_airplane_mode_on));
+
 			if (PreferencesActivity.airPlaneModeOn != null) {
 				PreferencesActivity.airPlaneModeOn.setChecked(true);
+			}
+			try {
+				doNotification(context, context.getString(R.string.notification_airplane_mode_on));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		} else {
 			Settings.System.putString(cr, Settings.System.AIRPLANE_MODE_ON, "0");
 			Intent intentOff = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
 			context.sendBroadcast(intentOff);
-			Tools.makeNotification(context, context.getString(R.string.notification_airplane_mode_off));
+
 			if (PreferencesActivity.airPlaneModeOn != null) {
 				PreferencesActivity.airPlaneModeOn.setChecked(false);
+			}
+			try {
+				doNotification(context, context.getString(R.string.notification_airplane_mode_off));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
 
+	private void doNotification(Context context, String str) throws Exception {
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String notificationType = mPrefs.getString("notificationType", "none");
+		if (notificationType.equals("none")) {
+
+		} else if (notificationType.equals("notification")) {
+			Tools.makeNotification(context, str);
+		} else if (notificationType.equals("vibrate")) {
+			Tools.Vibrator(context, 1000);
+		} else if (notificationType.equals("sound")) {
+			Tools.makeSound(context);
+		} else if (notificationType.equals("notification,vibrate")) {
+			Tools.makeNotification(context, str);
+			Tools.Vibrator(context, 1000);
+		} else if (notificationType.equals("notification,sound")) {
+			Tools.makeNotification(context, str);
+			Tools.makeSound(context);
+		} else if (notificationType.equals("vibrate,sound")) {
+			Tools.Vibrator(context, 1000);
+			Tools.makeSound(context);
+		} else if (notificationType.equals("notification,vibrate,sound")) {
+			Tools.makeNotification(context, str);
+			Tools.Vibrator(context, 1000);
+			Tools.makeSound(context);
+		}
+	}
 }

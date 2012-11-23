@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.content.Context;
+import android.graphics.YuvImage;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
@@ -56,6 +57,18 @@ public class TimePreference extends DialogPreference {
 
 	public long getTime() {
 		Date d = new Date(getSharedPreferences().getLong(getKey(), (long) 0));
-		return d.getTime();
+
+		if (d.getTime() < System.currentTimeMillis()) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTimeInMillis(java.lang.System.currentTimeMillis());
+			calendar.set(Calendar.HOUR_OF_DAY, d.getHours());
+			calendar.set(Calendar.MINUTE, d.getMinutes());
+			calendar.set(Calendar.SECOND, 0);
+			calendar.set(Calendar.MILLISECOND, 0);
+			calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
+			return calendar.getTimeInMillis();
+		} else {
+			return d.getTime();
+		}
 	}
 }

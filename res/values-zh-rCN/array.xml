@@ -13,5 +13,25 @@
         <item>cell,wift</item>
         <item>cell</item>
     </string-array>
+    <string-array name="notification_type">
+        <item>不提醒</item>
+        <item>只有通知栏</item>
+        <item>只震动</item>
+        <item>只播放提醒声音</item>
+        <item>通知栏和震动</item>
+        <item>通知栏和提醒声音</item>
+        <item>震动和提醒声音</item>
+        <item>通知栏,震动,和提醒声音</item>
+    </string-array>
+    <string-array name="notification_type_values">
+        <item>none</item>
+        <item>notification</item>
+        <item>vibrate</item>
+        <item>sound</item>
+        <item>notification,vibrate</item>
+        <item>notification,sound</item>
+        <item>vibrate,sound</item>
+        <item>notification,vibrate,sound</item>
+    </string-array>
 
 </resources>

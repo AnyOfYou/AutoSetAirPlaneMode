@@ -1,5 +1,6 @@
 package com.dary.autosetairplanemode;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,6 +10,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
 import android.os.Vibrator;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ public class Tools {
 		Notification notification = new Notification(R.drawable.ic_launcher, str, System.currentTimeMillis());
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
 		Intent intent = new Intent();
+		intent.setClass(context, PreferencesActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
 		notification.setLatestEventInfo(context, str, str, contentIntent);
 		notificationManager.notify(R.drawable.ic_launcher, notification);
@@ -38,5 +43,36 @@ public class Tools {
 
 	public static void makeToast(Context context, String str) {
 		Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
+	}
+
+	public static void makeSound(Context context) {
+		MediaPlayer mediaPlayer = new MediaPlayer();
+		try {
+			mediaPlayer.setDataSource(context, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+		try {
+			mediaPlayer.prepare();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mediaPlayer.start();
+		mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+			public void onCompletion(MediaPlayer mp) {
+				mp.release();
+			}
+		});
+
 	}
 }

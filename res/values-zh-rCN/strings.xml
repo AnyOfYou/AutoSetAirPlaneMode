@@ -27,5 +27,7 @@
     <string name="about">关于</string>
     <string name="github">https://github.com/AnyOfYou/AutoSetAirPlaneMode.git</string>
     <string name="ok">好的</string>
+    <string name="notification_type">设置通知类型</string>
+    <string name="notification_type_summary">设置当程序自动切换飞行模式状态时的通知类型</string>
 
 </resources>

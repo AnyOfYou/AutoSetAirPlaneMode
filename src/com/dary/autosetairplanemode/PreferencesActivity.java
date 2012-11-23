@@ -43,9 +43,6 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 	}
 
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
-		System.out.println(System.currentTimeMillis());
-		System.out.println(preference.getKey());
-		System.out.println(newValue.toString());
 		if (preference.getKey().equals("airPlaneMode")) {
 			ContentResolver cr = getContentResolver();
 			Settings.System.putString(cr, Settings.System.AIRPLANE_MODE_RADIOS, newValue.toString());

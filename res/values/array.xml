@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="airplanemode">
+    <string-array name="airplane_mode">
         <item>Regular</item>
         <item>Leave WIFI On</item>
         <item>Leave Bluetooth On</item>
         <item>Leave Both On</item>
     </string-array>
-    <string-array name="airplanemode_values">
+    <string-array name="airplane_mode_values">
         <item>cell,bluetooth,wifi</item>
         <item>cell,bluetooth</item>
         <item>cell,wift</item>
         <item>cell</item>
+    </string-array>
+    <string-array name="notification_type">
+        <item>None</item>
+        <item>Only Notification</item>
+        <item>Only Vibrate</item>
+        <item>Only Sound</item>
+        <item>Nofitication And Vibrate</item>
+        <item>Nofitication And Sound</item>
+        <item>Vibrate And Sound</item>
+        <item>Nofication And Vibrate And Sound</item>
+    </string-array>
+    <string-array name="notification_type_values">
+        <item>none</item>
+        <item>notification</item>
+        <item>vibrate</item>
+        <item>sound</item>
+        <item>notification,vibrate</item>
+        <item>notification,sound</item>
+        <item>vibrate,sound</item>
+        <item>notification,vibrate,sound</item>
     </string-array>
 
 </resources>
