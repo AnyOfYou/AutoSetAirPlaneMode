@@ -131,7 +131,7 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
 		case 0:
-			// intÀàĞÍµÄÒıÓÃ,²»ÄÜÖ±½ÓÏà¼Ó
+			// intç±»å‹çš„å¼•ç”¨,ä¸èƒ½ç›´æ¥ç›¸åŠ 
 			new AlertDialog.Builder(this).setTitle(R.string.about).setMessage(getResources().getString(R.string.app_name) + "\n\n" + getResources().getString(R.string.github)).setPositiveButton(com.dary.autosetairplanemode.R.string.ok, null).show();
 			break;
 		}

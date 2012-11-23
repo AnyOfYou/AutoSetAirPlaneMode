@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.content.Context;
-import android.graphics.YuvImage;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
@@ -33,7 +32,7 @@ public class TimePreference extends DialogPreference {
 	protected void onDialogClosed(boolean positiveResult) {
 		super.onDialogClosed(positiveResult);
 		if (positiveResult) {
-			// ºÜÖØÒª.·ñÔòÓÃ»§Ö±½ÓÊäÈëµÄÊıÖµ»á»ñÈ¡²»µ½
+			// å¾ˆé‡è¦,å¦åˆ™ç”±ç”¨æˆ·ç›´æ¥è¾“å…¥æ•°å­—çš„å€¼è·å–ä¸åˆ°.
 			mPicker.clearFocus();
 			long value = stringHourMinTimetoLongMillis(mPicker.getCurrentHour(), mPicker.getCurrentMinute());
 			if (callChangeListener(value)) {
