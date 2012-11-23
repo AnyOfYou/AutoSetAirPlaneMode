@@ -17,10 +17,12 @@
     <string name="notification_airplane_mode_on">打开飞行模式</string>
     <string name="notification_airplane_mode_off">关闭飞行模式</string>
     <string name="cancel_all">取消全部</string>
-    <string name="set_airplane_mode_auto">"设置飞行模式自动"</string>
-    <string name="repeat_everyday">"每天重复"</string>
+    <string name="set_airplane_mode_auto">设置飞行模式自动</string>
+    <string name="repeat_everyday">每天重复</string>
     <string name="on">打开</string>
     <string name="off">关闭</string>
     <string name="at">"在"</string>
+    <string name="please_select_set_airplane_mode_auto">请选择设置飞行模式自动</string>
+    <string name="time">的时间</string>
 
 </resources>

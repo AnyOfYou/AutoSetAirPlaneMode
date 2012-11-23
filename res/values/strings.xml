@@ -22,5 +22,7 @@
     <string name="on">On</string>
     <string name="off">Off</string>
     <string name="at">" At "</string>
+    <string name="please_select_set_airplane_mode_auto">"Please Select Set AirPlane Mode Auto "</string>
+    <string name="time">" Time"</string>
 
 </resources>

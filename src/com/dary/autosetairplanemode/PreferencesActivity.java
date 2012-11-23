@@ -1,14 +1,11 @@
 package com.dary.autosetairplanemode;
 
-import java.util.Calendar;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -18,8 +15,8 @@ import android.provider.Settings;
 public class PreferencesActivity extends PreferenceActivity implements OnPreferenceChangeListener {
 	static CheckBoxPreference airPlaneModeOn;
 	private static final String TURN_ON_OFF_AIRPLANE_MODE = "com.dary.autosetairplanemode.TurnOnOffAirPlaneMode";
-	private EditTextPreference autoTurnOnAirPlaneModeTime;
-	private EditTextPreference autoTurnOffAirPlaneModeTime;
+	private TimePreference autoTurnOnAirPlaneModeTime;
+	private TimePreference autoTurnOffAirPlaneModeTime;
 	private CheckBoxPreference isRepeat;
 	private int requestCodeOn = 0;
 	private int requestCodeOff = 1;
@@ -31,8 +28,8 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		ListPreference airPlaneMode = (ListPreference) findPreference("airPlaneMode");
 		airPlaneModeOn = (CheckBoxPreference) findPreference("airPlaneModeOn");
 		CheckBoxPreference autoTurnOnOffAirPlaneMode = (CheckBoxPreference) findPreference("autoTurnOnOffAirPlaneMode");
-		autoTurnOnAirPlaneModeTime = (EditTextPreference) findPreference("autoTurnOnAirPlaneModeTime");
-		autoTurnOffAirPlaneModeTime = (EditTextPreference) findPreference("autoTurnOffAirPlaneModeTime");
+		autoTurnOnAirPlaneModeTime = (TimePreference) findPreference("autoTurnOnAirPlaneModeTime");
+		autoTurnOffAirPlaneModeTime = (TimePreference) findPreference("autoTurnOffAirPlaneModeTime");
 		isRepeat = (CheckBoxPreference) findPreference("isRepeat");
 		airPlaneMode.setOnPreferenceChangeListener(this);
 		airPlaneModeOn.setOnPreferenceChangeListener(this);
@@ -40,17 +37,12 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		autoTurnOnAirPlaneModeTime.setOnPreferenceChangeListener(this);
 		autoTurnOffAirPlaneModeTime.setOnPreferenceChangeListener(this);
 		isRepeat.setOnPreferenceChangeListener(this);
-		if (autoTurnOnAirPlaneModeTime.getText().equals("0"))
-		{
-			autoTurnOnAirPlaneModeTime.setText("0000");
-		}
-		if (autoTurnOffAirPlaneModeTime.getText().equals("0"))
-		{
-			autoTurnOffAirPlaneModeTime.setText("0000");
-		}
 	}
 
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
+		System.out.println(System.currentTimeMillis());
+		System.out.println(preference.getKey());
+		System.out.println(newValue.toString());
 		if (preference.getKey().equals("airPlaneMode")) {
 			ContentResolver cr = getContentResolver();
 			Settings.System.putString(cr, Settings.System.AIRPLANE_MODE_RADIOS, newValue.toString());
@@ -67,22 +59,22 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 			}
 		} else if (preference.getKey().equals("autoTurnOnOffAirPlaneMode")) {
 			if ((Boolean) newValue) {
-				setAirPlaneMode(true, stringHourMinTimetoLongMillis(autoTurnOnAirPlaneModeTime.getText()), isRepeat.isChecked());
-				setAirPlaneMode(false, stringHourMinTimetoLongMillis(autoTurnOffAirPlaneModeTime.getText()), isRepeat.isChecked());
+				setAirPlaneMode(true, autoTurnOnAirPlaneModeTime.getTime(), isRepeat.isChecked());
+				setAirPlaneMode(false, autoTurnOffAirPlaneModeTime.getTime(), isRepeat.isChecked());
 			} else {
 				cancel();
 			}
 		} else if (preference.getKey().equals("autoTurnOnAirPlaneModeTime")) {
-			setAirPlaneMode(true, stringHourMinTimetoLongMillis(newValue.toString()), isRepeat.isChecked());
+			setAirPlaneMode(true, (Long) newValue, isRepeat.isChecked());
 		} else if (preference.getKey().equals("autoTurnOffAirPlaneModeTime")) {
-			setAirPlaneMode(false, stringHourMinTimetoLongMillis(newValue.toString()), isRepeat.isChecked());
+			setAirPlaneMode(false, (Long) newValue, isRepeat.isChecked());
 		} else if (preference.getKey().equals("isRepeat")) {
 			if ((Boolean) newValue) {
-				setAirPlaneMode(true, stringHourMinTimetoLongMillis(autoTurnOnAirPlaneModeTime.getText()), true);
-				setAirPlaneMode(false, stringHourMinTimetoLongMillis(autoTurnOffAirPlaneModeTime.getText()), true);
+				setAirPlaneMode(true, autoTurnOnAirPlaneModeTime.getTime(), true);
+				setAirPlaneMode(false, autoTurnOffAirPlaneModeTime.getTime(), true);
 			} else {
-				setAirPlaneMode(true, stringHourMinTimetoLongMillis(autoTurnOnAirPlaneModeTime.getText()), false);
-				setAirPlaneMode(false, stringHourMinTimetoLongMillis(autoTurnOffAirPlaneModeTime.getText()), false);
+				setAirPlaneMode(true, autoTurnOnAirPlaneModeTime.getTime(), false);
+				setAirPlaneMode(false, autoTurnOffAirPlaneModeTime.getTime(), false);
 			}
 		}
 		return true;
@@ -100,17 +92,21 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 	}
 
 	private void setAirPlaneMode(boolean isOn, long time, boolean isRepeat) {
-		int requestCode = isOn ? requestCodeOn : requestCodeOff;
-		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-		Intent intent = new Intent(TURN_ON_OFF_AIRPLANE_MODE);
-		intent.putExtra("AirPlaneModeOn", isOn);
-		PendingIntent pi = PendingIntent.getBroadcast(this, requestCode, intent, 0);
-		if (isRepeat) {
-			am.setRepeating(AlarmManager.RTC, time, 1000 * 60 * 60 * 24, pi);
-			Tools.makeToastSetAirPlaneMode(this, isOn, time, isRepeat);
+		if (time == 0) {
+			Tools.makeToast(this, getString(R.string.please_select_set_airplane_mode_auto) + (isOn ? getString(R.string.on) : getString(R.string.off)) + getString(R.string.time));
 		} else {
-			am.set(AlarmManager.RTC, time, pi);
-			Tools.makeToastSetAirPlaneMode(this, isOn, time, isRepeat);
+			int requestCode = isOn ? requestCodeOn : requestCodeOff;
+			AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+			Intent intent = new Intent(TURN_ON_OFF_AIRPLANE_MODE);
+			intent.putExtra("AirPlaneModeOn", isOn);
+			PendingIntent pi = PendingIntent.getBroadcast(this, requestCode, intent, 0);
+			if (isRepeat) {
+				am.setRepeating(AlarmManager.RTC, time, 1000 * 60 * 60 * 24, pi);
+				Tools.makeToastSetAirPlaneMode(this, isOn, time, isRepeat);
+			} else {
+				am.set(AlarmManager.RTC, time, pi);
+				Tools.makeToastSetAirPlaneMode(this, isOn, time, isRepeat);
+			}
 		}
 	}
 
@@ -123,20 +119,4 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		am.cancel(piOff);
 		Tools.makeToast(this, getString(R.string.cancel_all));
 	}
-
-	private long stringHourMinTimetoLongMillis(String str) {
-		String h = str.substring(0, 2);
-		String m = str.substring(2);
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(java.lang.System.currentTimeMillis());
-		calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(h));
-		calendar.set(Calendar.MINUTE, Integer.parseInt(m));
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
-		if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
-			calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
-		}
-		return calendar.getTimeInMillis();
-	}
-
 }
