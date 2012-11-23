@@ -28,6 +28,13 @@
                 <action android:name="com.dary.autosetairplanemode.TurnOnOffAirPlaneMode" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".StartUpReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

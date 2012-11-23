@@ -29,5 +29,7 @@
     <string name="ok">好的</string>
     <string name="notification_type">设置通知类型</string>
     <string name="notification_type_summary">设置当程序自动切换飞行模式状态时的通知类型</string>
+    <string name="is_start_at_boot">设置是否在手机启动的时候自动设置打开/关闭飞行模式</string>
+    <string name="is_start_at_boot_summary">设置是否在手机启动的时候自动设置打开/关闭飞行模式</string>
 
 </resources>
