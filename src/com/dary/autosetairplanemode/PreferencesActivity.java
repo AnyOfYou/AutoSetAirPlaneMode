@@ -93,6 +93,7 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 	}
 
 	static void setAirPlaneMode(Context context, boolean isOn, long time, boolean isRepeat) {
+		//刚刚装入程序,未设置时间时
 		if (time == 0) {
 			Tools.makeToast(context, context.getString(R.string.please_select_set_airplane_mode_auto) + (isOn ? context.getString(R.string.on) : context.getString(R.string.off)) + context.getString(R.string.time));
 		} else {
@@ -102,10 +103,10 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 			intent.putExtra("AirPlaneModeOn", isOn);
 			PendingIntent pi = PendingIntent.getBroadcast(context, requestCode, intent, 0);
 			if (isRepeat) {
-				am.setRepeating(AlarmManager.RTC, time, 1000 * 60 * 60 * 24, pi);
+				am.setRepeating(AlarmManager.RTC_WAKEUP, time, 1000 * 60 * 60 * 24, pi);
 				Tools.makeToastSetAirPlaneMode(context, isOn, time, isRepeat);
 			} else {
-				am.set(AlarmManager.RTC, time, pi);
+				am.set(AlarmManager.RTC_WAKEUP, time, pi);
 				Tools.makeToastSetAirPlaneMode(context, isOn, time, isRepeat);
 			}
 		}
