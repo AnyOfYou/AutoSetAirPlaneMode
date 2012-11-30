@@ -48,16 +48,17 @@ public class TimePreference extends DialogPreference {
 		calendar.set(Calendar.MINUTE, m);
 		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MILLISECOND, 0);
-		if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
-			calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
-		}
-		return calendar.getTimeInMillis();
+		return getLastTime(calendar.getTimeInMillis());
 	}
 
 	public long getTime() {
-		Date d = new Date(getSharedPreferences().getLong(getKey(), (long) 0));
+		long t = getSharedPreferences().getLong(getKey(), (long) 0);
+		return getLastTime(t);
+	}
 
-		if (d.getTime() < System.currentTimeMillis()) {
+	public static long getLastTime(long t) {
+		if (t < System.currentTimeMillis()) {
+			Date d = new Date(t);
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTimeInMillis(java.lang.System.currentTimeMillis());
 			calendar.set(Calendar.HOUR_OF_DAY, d.getHours());
@@ -67,7 +68,7 @@ public class TimePreference extends DialogPreference {
 			calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
 			return calendar.getTimeInMillis();
 		} else {
-			return d.getTime();
+			return t;
 		}
 	}
 }
