@@ -10,6 +10,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -73,6 +75,20 @@ public class Tools {
 				mp.release();
 			}
 		});
+	}
 
+	public static String getAppVersionName(Context context) {
+		String versionName = "";
+		try {
+			PackageManager pm = context.getPackageManager();
+			PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+			versionName = pi.versionName;
+			if (versionName == null || versionName.length() <= 0) {
+				return "";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return versionName;
 	}
 }

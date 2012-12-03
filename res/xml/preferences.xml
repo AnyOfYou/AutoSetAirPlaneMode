@@ -37,15 +37,15 @@
 
     <CheckBoxPreference
         android:id="@+id/isRepeat"
+        android:defaultValue="true"
         android:dependency="autoTurnOnOffAirPlaneMode"
         android:key="isRepeat"
-        android:defaultValue="true"
         android:summary="@string/is_repeat_summary"
         android:title="@string/is_repeat" />
     <CheckBoxPreference
         android:id="@+id/isStartAtBoot"
+        android:defaultValue="true"
         android:dependency="autoTurnOnOffAirPlaneMode"
-  		android:defaultValue="true"
         android:key="isStartAtBoot"
         android:summary="@string/is_start_at_boot_summary"
         android:title="@string/is_start_at_boot" />
@@ -58,5 +58,9 @@
         android:key="notificationType"
         android:summary="@string/notification_type_summary"
         android:title="@string/notification_type" />
+
+    <Preference
+        android:key="about"
+        android:title="@string/about" />
 
 </PreferenceScreen>

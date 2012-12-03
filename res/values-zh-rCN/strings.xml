@@ -31,5 +31,8 @@
     <string name="notification_type_summary">设置当程序自动切换飞行模式状态时的通知类型</string>
     <string name="is_start_at_boot">设置是否在手机启动的时候自动设置打开/关闭飞行模式</string>
     <string name="is_start_at_boot_summary">设置是否在手机启动的时候自动设置打开/关闭飞行模式</string>
+    <string name="author">"作者 : "</string>
+    <string name="author_value">Dary</string>
+    <string name="version">"版本 : "</string>
 
 </resources>

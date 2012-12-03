@@ -29,7 +29,6 @@
     <string name="ok">OK</string>
     <string name="notification_type">Set Notification Type</string>
     <string name="notification_type_summary">Set Notification Type When App Auto Set Airplane Mode On/Off</string>
-    <string name="is_start_at_boot">Set Auto Turn On/Off Airplane Mode At Phone Start At Boot</string>
-    <string name="is_start_at_boot_summary">Set Auto Turn On/Off Airplane Mode At Phone Start At Boot</string>
+    <string name="is_start_at_boot">Set Auto Turn On/Off Airplane Mode At Phone Start At Boot</string>    <string name="is_start_at_boot_summary">Set Auto Turn On/Off Airplane Mode At Phone Start At Boot</string>    <string name="author">"Author : "</string>    <string name="author_value">Dary</string>    <string name="version">"Version : "</string>
 
 </resources>

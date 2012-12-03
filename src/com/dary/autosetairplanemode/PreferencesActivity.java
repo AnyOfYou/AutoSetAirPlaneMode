@@ -11,10 +11,11 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.provider.Settings;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class PreferencesActivity extends PreferenceActivity implements OnPreferenceChangeListener {
 	static CheckBoxPreference airPlaneModeOn;
@@ -41,6 +42,18 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		autoTurnOnAirPlaneModeTime.setOnPreferenceChangeListener(this);
 		autoTurnOffAirPlaneModeTime.setOnPreferenceChangeListener(this);
 		isRepeat.setOnPreferenceChangeListener(this);
+
+		Preference about = findPreference("about");
+		about.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			public boolean onPreferenceClick(Preference preference) {
+				View view = View.inflate(PreferencesActivity.this, R.layout.about, null);
+				TextView tv = (TextView) view.findViewById(R.id.text_about);
+				tv.setText(getResources().getString(R.string.author) + getResources().getString(R.string.author_value) + "\n" + getResources().getString(R.string.version) + Tools.getAppVersionName(PreferencesActivity.this) + "\n" + getResources().getString(R.string.github));
+				new AlertDialog.Builder(PreferencesActivity.this).setTitle(R.string.app_name).setView(view).setPositiveButton(R.string.ok, null).setIcon(R.drawable.ic_launcher).show();
+				return false;
+			}
+		});
 	}
 
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -60,22 +73,22 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 			}
 		} else if (preference.getKey().equals("autoTurnOnOffAirPlaneMode")) {
 			if ((Boolean) newValue) {
-				setAirPlaneMode(this,true, autoTurnOnAirPlaneModeTime.getTime(), isRepeat.isChecked());
-				setAirPlaneMode(this,false, autoTurnOffAirPlaneModeTime.getTime(), isRepeat.isChecked());
+				setAirPlaneMode(this, true, autoTurnOnAirPlaneModeTime.getTime(), isRepeat.isChecked());
+				setAirPlaneMode(this, false, autoTurnOffAirPlaneModeTime.getTime(), isRepeat.isChecked());
 			} else {
 				cancel();
 			}
 		} else if (preference.getKey().equals("autoTurnOnAirPlaneModeTime")) {
-			setAirPlaneMode(this,true, (Long) newValue, isRepeat.isChecked());
+			setAirPlaneMode(this, true, (Long) newValue, isRepeat.isChecked());
 		} else if (preference.getKey().equals("autoTurnOffAirPlaneModeTime")) {
-			setAirPlaneMode(this,false, (Long) newValue, isRepeat.isChecked());
+			setAirPlaneMode(this, false, (Long) newValue, isRepeat.isChecked());
 		} else if (preference.getKey().equals("isRepeat")) {
 			if ((Boolean) newValue) {
-				setAirPlaneMode(this,true, autoTurnOnAirPlaneModeTime.getTime(), true);
-				setAirPlaneMode(this,false, autoTurnOffAirPlaneModeTime.getTime(), true);
+				setAirPlaneMode(this, true, autoTurnOnAirPlaneModeTime.getTime(), true);
+				setAirPlaneMode(this, false, autoTurnOffAirPlaneModeTime.getTime(), true);
 			} else {
-				setAirPlaneMode(this,true, autoTurnOnAirPlaneModeTime.getTime(), false);
-				setAirPlaneMode(this,false, autoTurnOffAirPlaneModeTime.getTime(), false);
+				setAirPlaneMode(this, true, autoTurnOnAirPlaneModeTime.getTime(), false);
+				setAirPlaneMode(this, false, autoTurnOffAirPlaneModeTime.getTime(), false);
 			}
 		}
 		return true;
@@ -93,7 +106,7 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 	}
 
 	static void setAirPlaneMode(Context context, boolean isOn, long time, boolean isRepeat) {
-		//刚刚装入程序,未设置时间时
+		// 刚刚装入程序,未设置时间时
 		if (time == 0) {
 			Tools.makeToast(context, context.getString(R.string.please_select_set_airplane_mode_auto) + (isOn ? context.getString(R.string.on) : context.getString(R.string.off)) + context.getString(R.string.time));
 		} else {
@@ -120,22 +133,5 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 		am.cancel(piOn);
 		am.cancel(piOff);
 		Tools.makeToast(this, getString(R.string.cancel_all));
-	}
-
-	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, 0, 0, com.dary.autosetairplanemode.R.string.about);
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		super.onOptionsItemSelected(item);
-		switch (item.getItemId()) {
-		case 0:
-			// int类型的引用,不能直接相加
-			new AlertDialog.Builder(this).setTitle(R.string.about).setMessage(getResources().getString(R.string.app_name) + "\n\n" + getResources().getString(R.string.github)).setPositiveButton(com.dary.autosetairplanemode.R.string.ok, null).show();
-			break;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 }

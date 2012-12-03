@@ -24,21 +24,18 @@ public class Receiver extends BroadcastReceiver {
 			try {
 				doNotification(context, context.getString(R.string.notification_airplane_mode_on));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			Settings.System.putString(cr, Settings.System.AIRPLANE_MODE_ON, "0");
 			Intent intentOff = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
 			context.sendBroadcast(intentOff);
-
 			if (PreferencesActivity.airPlaneModeOn != null) {
 				PreferencesActivity.airPlaneModeOn.setChecked(false);
 			}
 			try {
 				doNotification(context, context.getString(R.string.notification_airplane_mode_off));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
