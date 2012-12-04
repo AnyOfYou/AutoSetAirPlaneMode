@@ -34,5 +34,8 @@
     <string name="author">"作者 : "</string>
     <string name="author_value">Dary</string>
     <string name="version">"版本 : "</string>
+    <string name="find_more">这是一个开源项目,你可以在这里找到更多信息 :</string>
+    <string name="email">"Email : "</string>
+    <string name="email_value">anyofyou@gmail.com</string>
 
 </resources>

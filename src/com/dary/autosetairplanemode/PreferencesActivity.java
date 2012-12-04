@@ -49,7 +49,7 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
 			public boolean onPreferenceClick(Preference preference) {
 				View view = View.inflate(PreferencesActivity.this, R.layout.about, null);
 				TextView tv = (TextView) view.findViewById(R.id.text_about);
-				tv.setText(getResources().getString(R.string.author) + getResources().getString(R.string.author_value) + "\n" + getResources().getString(R.string.version) + Tools.getAppVersionName(PreferencesActivity.this) + "\n" + getResources().getString(R.string.github));
+				tv.setText(getResources().getString(R.string.author) + getResources().getString(R.string.author_value) + "\n" + getResources().getString(R.string.email) + getResources().getString(R.string.email_value) + "\n" + getResources().getString(R.string.version) + Tools.getAppVersionName(PreferencesActivity.this) + "\n" + getResources().getString(R.string.find_more) + "\n" + getResources().getString(R.string.github));
 				new AlertDialog.Builder(PreferencesActivity.this).setTitle(R.string.app_name).setView(view).setPositiveButton(R.string.ok, null).setIcon(R.drawable.ic_launcher).show();
 				return false;
 			}
