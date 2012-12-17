@@ -53,23 +53,33 @@ public class TimePreference extends DialogPreference {
 
 	public long getTime() {
 		long t = getSharedPreferences().getLong(getKey(), (long) 0);
-		if (t == 0)
-		{
+		if (t == 0) {
 			return 0;
 		}
 		return getLastTime(t);
 	}
 
 	public static long getLastTime(long t) {
-		if (t < System.currentTimeMillis()) {
+		long currentTime = System.currentTimeMillis();
+
+		if (currentTime > t) {
 			Date d = new Date(t);
 			Calendar calendar = Calendar.getInstance();
-			calendar.setTimeInMillis(java.lang.System.currentTimeMillis());
+			calendar.setTimeInMillis(currentTime);
 			calendar.set(Calendar.HOUR_OF_DAY, d.getHours());
 			calendar.set(Calendar.MINUTE, d.getMinutes());
 			calendar.set(Calendar.SECOND, 0);
 			calendar.set(Calendar.MILLISECOND, 0);
-			calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
+
+			Calendar c = Calendar.getInstance();
+			c.setTimeInMillis(t);
+			c.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR));
+
+			if (currentTime < c.getTimeInMillis()) {
+				calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR));
+			} else {
+				calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
+			}
 			return calendar.getTimeInMillis();
 		} else {
 			return t;
