@@ -59,7 +59,15 @@ public class TimePreference extends DialogPreference {
 		return getLastTime(t);
 	}
 
-	public static long getLastTime(long t) {
+	public long getOriginalTime() {
+		long t = getSharedPreferences().getLong(getKey(), (long) 0);
+		if (t == 0) {
+			return 0;
+		}
+		return t;
+	}
+
+	static long getLastTime(long t) {
 		long currentTime = System.currentTimeMillis();
 
 		if (currentTime > t) {

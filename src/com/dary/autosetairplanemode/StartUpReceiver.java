@@ -16,6 +16,8 @@ public class StartUpReceiver extends BroadcastReceiver {
 			System.out.println("StartUp Receiver");
 			long autoTurnOnAirPlaneModeTime = TimePreference.getLastTime(mPrefs.getLong("autoTurnOnAirPlaneModeTime", 0));
 			long autoTurnOffAirPlaneModeTime = TimePreference.getLastTime(mPrefs.getLong("autoTurnOffAirPlaneModeTime", 0));
+			mPrefs.edit().putLong("autoTurnOnAirPlaneModeTime", autoTurnOnAirPlaneModeTime).commit();
+			mPrefs.edit().putLong("autoTurnOffAirPlaneModeTime", autoTurnOffAirPlaneModeTime).commit();
 			boolean isRepeat = mPrefs.getBoolean("isRepeat", false);
 			PreferencesActivity.setAirPlaneMode(context, true, autoTurnOnAirPlaneModeTime, isRepeat);
 			PreferencesActivity.setAirPlaneMode(context, false, autoTurnOffAirPlaneModeTime, isRepeat);
