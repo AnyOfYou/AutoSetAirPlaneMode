@@ -40,7 +40,7 @@ public class Tools {
 	public static void makeToastSetAirPlaneMode(Context context, boolean isOn, long time, boolean isRepeat) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(time);
-		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss",Locale.getDefault());
+		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault());
 		Toast.makeText(context, context.getString(R.string.set_airplane_mode_auto) + (isRepeat ? context.getString(R.string.repeat_everyday) : "") + (isOn ? context.getString(R.string.on) : context.getString(R.string.off)) + context.getString(R.string.at) + formatter.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
 	}
 

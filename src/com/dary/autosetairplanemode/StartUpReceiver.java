@@ -11,7 +11,7 @@ public class StartUpReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		boolean autoTurnOnOffAirPlaneMode = mPrefs.getBoolean("autoTurnOnOffAirPlaneMode",false);
+		boolean autoTurnOnOffAirPlaneMode = mPrefs.getBoolean("autoTurnOnOffAirPlaneMode", false);
 		boolean isStartAtBoot = mPrefs.getBoolean("isStartAtBoot", false);
 		if (autoTurnOnOffAirPlaneMode && isStartAtBoot) {
 			System.out.println("StartUp Receiver");
