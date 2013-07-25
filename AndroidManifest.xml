@@ -7,9 +7,9 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-sdk
+        android:maxSdkVersion="16"
         android:minSdkVersion="7"
-        android:targetSdkVersion="15"
-        android:maxSdkVersion="16" />
+        android:targetSdkVersion="15" />
 
     <application
         android:icon="@drawable/ic_launcher"
