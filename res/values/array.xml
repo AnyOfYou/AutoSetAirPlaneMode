@@ -10,7 +10,7 @@
     <string-array name="airplane_mode_values">
         <item>cell,bluetooth,wifi</item>
         <item>cell,bluetooth</item>
-        <item>cell,wift</item>
+        <item>cell,wifi</item>
         <item>cell</item>
     </string-array>
     <string-array name="notification_type">
