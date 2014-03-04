@@ -7,7 +7,7 @@
         <item>不关闭蓝牙</item>
         <item>不关闭WiFi和蓝牙</item>
     </string-array>
-    <string-array name="airplanemode_values">
+    <string-array name="airplane_mode_values">
         <item>cell,bluetooth,wifi</item>
         <item>cell,bluetooth</item>
         <item>cell,wift</item>
