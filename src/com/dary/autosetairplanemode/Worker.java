@@ -77,9 +77,9 @@ public class Worker {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-                Toast.makeText(AppApplication.getInstance(), "Done", Toast.LENGTH_LONG).show();
+                Toast.makeText(AppApplication.getInstance(), AppApplication.getInstance().getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
             } else {
-                Tools.showDialog(mActivity, "Root Failure");
+                Tools.showDialog(mActivity, AppApplication.getInstance().getResources().getString(R.string.root_failure));
             }
             super.onPostExecute(result);
         }
@@ -129,9 +129,9 @@ public class Worker {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-                Toast.makeText(AppApplication.getInstance(), "Done", Toast.LENGTH_LONG).show();
+                Toast.makeText(AppApplication.getInstance(), AppApplication.getInstance().getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
             } else {
-                Tools.showDialog(mActivity, "Root Failure");
+                Tools.showDialog(mActivity, AppApplication.getInstance().getResources().getString(R.string.root_failure));
             }
             super.onPostExecute(result);
         }

@@ -37,5 +37,7 @@
     <string name="find_more">这是一个开源项目,你可以在这里找到更多信息 :</string>
     <string name="email">"Email : "</string>
     <string name="email_value">anyofyou@gmail.com</string>
+    <string name="done">完成</string>
+    <string name="root_failure">Root失败</string>
 
 </resources>

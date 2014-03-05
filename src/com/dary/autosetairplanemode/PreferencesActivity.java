@@ -158,10 +158,10 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
         if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
             RootFW root = new RootFW();
             if (!root.isRoot()) {
-                Tools.showDialog(PreferencesActivity.this, "Root Failure");
+                Tools.showDialog(PreferencesActivity.this, AppApplication.getInstance().getResources().getString(R.string.root_failure));
             } else {
                 if (!root.connect()) {
-                    Tools.showDialog(PreferencesActivity.this, "Root Failure");
+                    Tools.showDialog(PreferencesActivity.this, AppApplication.getInstance().getResources().getString(R.string.root_failure));
                 }
                 root.disconnect();
             }
