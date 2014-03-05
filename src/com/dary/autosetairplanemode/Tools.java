@@ -1,6 +1,8 @@
 
 package com.dary.autosetairplanemode;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -104,5 +106,15 @@ public class Tools {
             e.printStackTrace();
         }
         return versionName;
+    }
+
+    public static void showDialog(Activity activity, String msg) {
+        if (activity != null) {
+            new AlertDialog.Builder(activity).setTitle(R.string.app_name)
+                    .setMessage(msg).setPositiveButton(R.string.ok, null)
+                    .setIcon(R.drawable.ic_launcher).show();
+        } else {
+            Toast.makeText(AppApplication.getInstance(), msg, Toast.LENGTH_LONG).show();
+        }
     }
 }

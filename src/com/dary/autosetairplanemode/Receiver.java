@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 
 public class Receiver extends BroadcastReceiver {
 
@@ -15,34 +14,24 @@ public class Receiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         ContentResolver cr = context.getContentResolver();
         if (intent.getBooleanExtra("AirPlaneModeOn", true)) {
-            Settings.System.putString(cr, Settings.System.AIRPLANE_MODE_ON, "1");
-            Intent intentOn = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-            context.sendBroadcast(intentOn);
-
+            Worker worker = new Worker(null);
+            worker.setAirPlaneModeOnOff(true);
             if (PreferencesActivity.airPlaneModeOn != null) {
                 PreferencesActivity.airPlaneModeOn.setChecked(true);
             }
-            try {
-                doNotification(context, context.getString(R.string.notification_airplane_mode_on));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            doNotification(context, context.getString(R.string.notification_airplane_mode_on));
+
         } else {
-            Settings.System.putString(cr, Settings.System.AIRPLANE_MODE_ON, "0");
-            Intent intentOff = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-            context.sendBroadcast(intentOff);
+            Worker worker = new Worker(null);
+            worker.setAirPlaneModeOnOff(false);
             if (PreferencesActivity.airPlaneModeOn != null) {
                 PreferencesActivity.airPlaneModeOn.setChecked(false);
             }
-            try {
-                doNotification(context, context.getString(R.string.notification_airplane_mode_off));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            doNotification(context, context.getString(R.string.notification_airplane_mode_off));
         }
     }
 
-    private void doNotification(Context context, String str) throws Exception {
+    private void doNotification(Context context, String str) {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         String notificationType = mPrefs.getString("notificationType", "none");
         if (notificationType.equals("none")) {
