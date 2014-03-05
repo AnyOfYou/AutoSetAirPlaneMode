@@ -39,5 +39,6 @@
     <string name="email_value">anyofyou@gmail.com</string>
     <string name="done">完成</string>
     <string name="root_failure">Root失败</string>
+    <string name="changelog">版本记录</string>
 
 </resources>

@@ -3,6 +3,9 @@ package com.dary.autosetairplanemode;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -72,6 +75,23 @@ public class PreferencesActivity extends PreferenceActivity implements OnPrefere
                 new AlertDialog.Builder(PreferencesActivity.this).setTitle(R.string.app_name)
                         .setView(view).setPositiveButton(R.string.ok, null)
                         .setIcon(R.drawable.ic_launcher).show();
+                return false;
+            }
+        });
+        
+        Preference changelog = findPreference("changelog");
+        changelog.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+            
+            public boolean onPreferenceClick(Preference preference) {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ChangeLogFragment clf = new ChangeLogFragment();
+                Fragment prev = fm.findFragmentByTag("changelog");
+                if (prev!= null){
+                    ft.remove(prev);
+                }
+                clf.show(fm, "changelog");
+                ft.commit();
                 return false;
             }
         });

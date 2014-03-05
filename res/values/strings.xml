@@ -39,5 +39,6 @@
     <string name="email_value">anyofyou@gmail.com</string>
     <string name="done">Done</string>
     <string name="root_failure">Root Failure</string>
+    <string name="changelog">Changlog</string>
 
 </resources>

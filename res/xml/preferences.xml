@@ -62,5 +62,9 @@
     <Preference
         android:key="about"
         android:title="@string/about" />
+    
+    <Preference
+        android:key="changelog"
+        android:title="@string/changelog" />
 
 </PreferenceScreen>
